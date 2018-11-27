@@ -1,5 +1,5 @@
 
-# ringcentral-chatbot-template-python <!-- omit in toc -->
+# ringcentral-chatbot-template-js <!-- omit in toc -->
 
 Template to build RingCentral chatbot with [ringcentral-chatbot-js](https://github.com/tylerlong/ringcentral-chatbot-js).
 
