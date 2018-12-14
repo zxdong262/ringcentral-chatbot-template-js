@@ -1,6 +1,9 @@
 /**
- * bot logic sample
+ * default bot logic, will be overide by bot-logic.js
+ * create bot-logic.js by `cp bot-logic-sample.js bot-logic.js`
  */
+
+const {resolve} = require('path')
 
 /**
  * when chat group got new post
@@ -8,15 +11,9 @@
  * @param {object} group info
  * @param {Bot} bot instance
  */
-
-/*
 exports.onBotGetPost = async ({
   text, group, bot, userId
 }) => {
-  if (!text.includes(`![:Person](${bot.id})`)) {
-    return
-  }
-
   bot.sendMessage(
     group.id,
     {
@@ -24,14 +21,12 @@ exports.onBotGetPost = async ({
     }
   )
 }
-*/
 
 /**
  * when bot join chat group
  * @param {object} group info
  * @param {Bot} bot instance
  */
-/*
 exports.onBotJoinGroup = async ({
   bot,
   group
@@ -43,4 +38,16 @@ exports.onBotJoinGroup = async ({
     }
   )
 }
-*/
+
+try {
+  let local = require(
+    resolve(
+      process.cwd(),
+      'bot-logic.js'
+    )
+  )
+  Object.assign(exports, local)
+} catch(e) {
+  console.log(e.message)
+  console.log('no bot-logic.js, use default bot logic')
+}
