@@ -1,6 +1,6 @@
 
 const createApp = require('ringcentral-chatbot/dist/apps').default
-
+const initDb = require('./init-db')
 const handle = require('./handler')
 
 const app = createApp(handle)
@@ -14,4 +14,5 @@ app.get('/favicon.ico', (req, res) => {
 })
 app.listen(port, () => {
   console.log('bot server running on', `http://localhost:${port}`)
+  initDb()
 })

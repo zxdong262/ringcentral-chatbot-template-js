@@ -1,5 +1,5 @@
 service:
-  name: demo-ping-chatbot
+  name: glip-voicemail-chatbot
 provider:
   stage: ${opt:stage, 'prod'}
   name: aws
@@ -12,15 +12,16 @@ provider:
       Action:
         - lambda:InvokeFunction
       Resource: "*"
-package:
-  exclude:
-    - serverless.sample.yml
   excludeDevDependencies: true
 functions:
-  bot:
-    handler: lambda.bot
-    timeout: 400
+  app:
+    handler: lambda.app
+    timeout: 400 # 5 miutes
   proxy:
     handler: lambda.proxy
     events:
-      - http: 'ANY {proxy+}'
+      - http:
+          method: any
+          path: /{proxy+}
+          cors: true
+

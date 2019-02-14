@@ -60,7 +60,7 @@ aws_access_key_id = <your aws_access_key_id>
 aws_secret_access_key = <your aws_secret_access_key>
 ```
 
-For more information, refer to https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html
+For more information, refer to [https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)
 
 ```bash
 cp lambda/serverless.sample.yml lambda/serverless.yml
