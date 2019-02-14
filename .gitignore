@@ -81,3 +81,4 @@ yarn.lock
 
 /dist/.env.yml
 /dist/serverless.yml
+db.sqlite

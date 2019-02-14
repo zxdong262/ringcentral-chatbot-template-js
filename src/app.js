@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 app.get('/favicon.ico', (req, res) => {
   res.end('')
 })
+app.get('/test', (req, res) => res.send('server running'))
 app.listen(port, () => {
   console.log('bot server running on', `http://localhost:${port}`)
   initDb()
