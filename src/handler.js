@@ -1,10 +1,10 @@
-const {
+import {
   onBotGetPost,
   onBotJoinGroup
-} = require('./default-bot-logic')
-const { Bot } = require('ringcentral-chatbot/dist/models')
+} from './default-bot-logic'
+import { Bot } from 'ringcentral-chatbot/dist/models'
 
-module.exports = async event => {
+export default async event => {
   const { type } = event
   console.log('-------')
   console.log(event)

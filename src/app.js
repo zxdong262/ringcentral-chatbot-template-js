@@ -1,6 +1,6 @@
 
-const createApp = require('ringcentral-chatbot/dist/apps').default
-const handle = require('./handler')
+import createApp from 'ringcentral-chatbot/dist/apps'
+import handle from './handler'
 
 const app = createApp(handle)
 
@@ -11,3 +11,5 @@ app.get('/favicon.ico', (req, res) => {
   res.end('')
 })
 app.get('/test', (req, res) => res.send('server running'))
+
+export default app
