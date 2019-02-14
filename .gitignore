@@ -79,5 +79,5 @@ tests/e2e/reports/
 docs/esdoc
 yarn.lock
 
-fakeDB/
-google.json
+/dist/.env.yml
+/dist/serverless.yml
