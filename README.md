@@ -35,11 +35,12 @@ cp .sample.env .env
 # then edit .env, set proper setting,
 # and goto your ringcentral app setting page, set OAuth Redirect URI to https://https://xxxxx.ngrok.io/bot/oauth
 
+# create bot logic file
+cp bot-logic-sample.js src/bot-logic.js
+
 # run local dev server
 yarn start
 
-# init db
-curl -X PUT https://xxxxx.ngrok.io/admin/setup-database
 ```
 
 ## Test bot
@@ -84,6 +85,9 @@ yarn deploy
 # Edit dist/.env.yml, replace RINGCENTRAL_CHATBOT_SERVER with https://xxxxx.execute-api.us-east-1.amazonaws.com/prod
 # run deploy again
 yarn deploy
+
+# init db
+curl -X PUT xxxxx.execute-api.us-east-1.amazonaws.com/prod/admin/setup-database
 
 ## watch Lambda server log
 yarn watch
