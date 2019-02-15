@@ -36,6 +36,7 @@ cp .sample.env .env
 # and goto your ringcentral app setting page, set OAuth Redirect URI to https://https://xxxxx.ngrok.io/bot/oauth
 
 # create bot logic file
+# edit bot-logic.js to create your own bot logic
 cp bot-logic-sample.js src/bot-logic.js
 
 # run local dev server
