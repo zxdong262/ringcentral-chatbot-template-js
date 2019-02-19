@@ -53,9 +53,12 @@ async function run() {
     console.log('please set correct RINGCENTRAL_CHATBOT_SERVER in dist/.env.yml')
     process.exit(1)
   }
-  let res = await execAsync('npm i --production').catch(log)
+  let cmd1 = 'npm i --production'
+  log(cmd1)
+  let res = await execAsync(cmd1).catch(log)
   console.log(res)
-  let res1 = await execAsync('../node_modules/.bin/sls deploy').catch(log)
+  let cmd2 = '../node_modules/.bin/sls deploy'
+  let res1 = await execAsync(cmd2).catch(log)
   console.log(res1)
 }
 
