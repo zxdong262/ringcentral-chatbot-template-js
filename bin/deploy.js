@@ -13,7 +13,7 @@
  * first build once, confirm api endpoint url
  * edit dist/serverless.yml to update bot server url
  */
-const {copyFileSync, readFileSync} = require('fs')
+const {copyFileSync, readFileSync, writeFileSync} = require('fs')
 const {exec} = require('child_process')
 const yaml = require('js-yaml')
 const {resolve} = require('path')
@@ -49,17 +49,35 @@ async function run() {
   let yml = readYml(file)
   console.log(yml, 'yml')
   let url = yml.RINGCENTRAL_CHATBOT_SERVER
-  if (!url || !/^https:\/\/.+\.amazonaws\.com.+/.test(url)) {
-    console.log('please set correct RINGCENTRAL_CHATBOT_SERVER in dist/.env.yml')
-    process.exit(1)
-  }
+  // if (!url || !/^https:\/\/.+\.amazonaws\.com.+/.test(url)) {
+  //   console.log('please set correct RINGCENTRAL_CHATBOT_SERVER in dist/.env.yml')
+  //   process.exit(1)
+  // }
   let cmd1 = 'npm i --production'
-  log(cmd1)
+  log(`run cmd: ${cmd1}`)
   let res = await execAsync(cmd1).catch(log)
   console.log(res)
   let cmd2 = '../node_modules/.bin/sls deploy'
+  log(`run cmd: ${cmd2}`)
   let res1 = await execAsync(cmd2).catch(log)
   console.log(res1)
+  if (!res1) {
+    return log('build fails')
+  }
+  let reg = /https:\/\/.+\.amazonaws\.com.+\}/
+  let arr = res1.match(reg)
+  if (!arr || !arr[1]) {
+    return log('build fails')
+  }
+  let urlReal = `${arr[1]}/prod`
+  log(`RINGCENTRAL_CHATBOT_SERVER in api gate way: ${urlReal}`)
+  if (urlReal !== url) {
+    log('modify RINGCENTRAL_CHATBOT_SERVER in dist/.env.yml')
+    yml.RINGCENTRAL_CHATBOT_SERVER = urlReal
+    let newYml = yaml.safeDump(yml)
+    writeFileSync(file, newYml)
+    run()
+  }
 }
 
 run()
