@@ -47,13 +47,14 @@ async function run() {
   )
   let file = resolve(__dirname, '../dist/.env.yml')
   let yml = readYml(file)
+  console.log(yml, 'yml')
   let url = yml.RINGCENTRAL_CHATBOT_SERVER
   if (!url || !/^https:\/\/.+\.amazonaws\.com.+/.test(url)) {
     console.log('please set correct RINGCENTRAL_CHATBOT_SERVER in dist/.env.yml')
     process.exit(1)
   }
-  let res = await execAsync('npm i --production')
-  console.log(res).catch(log)
+  let res = await execAsync('npm i --production').catch(log)
+  console.log(res)
   let res1 = await execAsync('../node_modules/.bin/sls deploy').catch(log)
   console.log(res1)
 }
