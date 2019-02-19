@@ -57,3 +57,5 @@ async function run() {
   let res1 = await execAsync('../node_modules/.bin/sls deploy')
   console.log(res1)
 }
+
+run()
