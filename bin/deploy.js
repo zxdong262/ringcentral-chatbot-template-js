@@ -68,7 +68,7 @@ async function run() {
   } else {
     log('url matched, init database')
     axios.put(
-      urlReal,
+      `${urlReal}/admin/setup-database`,
       undefined,
       {
         auth: {
