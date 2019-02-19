@@ -1,18 +1,5 @@
-// const { exec, cp, echo } = require('shelljs')
 
-// echo('deploying...')
-// cp([
-//   'package.json'
-// ], 'dist/')
-
-// exec('cd dist && npm i --production && ../node_modules/.bin/sls deploy')
-// echo('deploying done')
-
-/**
- * auto deploy process
- * first build once, confirm api endpoint url
- * edit dist/serverless.yml to update bot server url
- */
+const axios = require('axios')
 const {copyFileSync, readFileSync, writeFileSync} = require('fs')
 const {exec} = require('child_process')
 const yaml = require('js-yaml')
@@ -78,6 +65,18 @@ async function run() {
     let newYml = yaml.safeDump(yml)
     writeFileSync(file, newYml)
     run()
+  } else {
+    log('url matched, init database')
+    axios.put(
+      urlReal,
+      undefined,
+      {
+        auth: {
+          username: yml.RINGCENTRAL_CHATBOT_ADMIN_USERNAME,
+          password: yml.RINGCENTRAL_CHATBOT_ADMIN_PASSWORD
+        }
+      }
+    )
   }
 }
 
