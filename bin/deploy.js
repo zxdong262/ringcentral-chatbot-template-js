@@ -66,7 +66,8 @@ async function run() {
     writeFileSync(file, newYml)
     run()
   } else {
-    log('url matched, init database')
+    let dbinitUrl = `${urlReal}/admin/setup-database`
+    log(`url matched, init database by "curl -X ${dbinitUrl}"`)
     axios.put(
       `${urlReal}/admin/setup-database`,
       undefined,
