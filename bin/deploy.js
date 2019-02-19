@@ -53,8 +53,8 @@ async function run() {
     process.exit(1)
   }
   let res = await execAsync('npm i --production')
-  console.log(res)
-  let res1 = await execAsync('../node_modules/.bin/sls deploy')
+  console.log(res).catch(log)
+  let res1 = await execAsync('../node_modules/.bin/sls deploy').catch(log)
   console.log(res1)
 }
 
