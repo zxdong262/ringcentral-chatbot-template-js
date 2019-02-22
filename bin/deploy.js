@@ -53,7 +53,6 @@ async function run() {
   }
   let reg = /(https:\/\/.+\.amazonaws\.com).+\}/
   let arr = res1.match(reg)
-  console.log(arr, 'arr')
   if (!arr || !arr[1]) {
     return log('build fails')
   }
