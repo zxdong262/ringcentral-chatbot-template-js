@@ -87,9 +87,6 @@ yarn deploy
 # run deploy again
 yarn deploy
 
-# init db
-curl -X PUT xxxxx.execute-api.us-east-1.amazonaws.com/prod/admin/setup-database
-
 ## watch Lambda server log
 yarn watch
 
