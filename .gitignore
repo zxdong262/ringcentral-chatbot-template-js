@@ -16,12 +16,11 @@ jspm_packages
 *.log
 .DS_Store
 *.rdb
-/.happypack/
-/app/assets/
-/filedb
+
 # config etc
 .idea/
-/config.js
+/bot.js
+/src/bot.js
 /temp/
 /temp1/
 test/unit/coverage
@@ -34,13 +33,6 @@ test/e2e/reports
 /pm2
 /package-bak.json
 package-lock.json
-/lambda/config.js
-/lambda/lib/
-/lambda/common/
-/lambda/serverless.yml
-/lambda/*.js
-/lambda/*.json
-/lambda/.yarnclean
 # Runtime data
 #pids
 

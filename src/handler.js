@@ -2,7 +2,6 @@ import {
   onBotGetPost,
   onBotJoinGroup
 } from './default-bot-logic'
-import { Bot } from 'ringcentral-chatbot/dist/models'
 
 export default async event => {
   const { type } = event
@@ -11,10 +10,8 @@ export default async event => {
   console.log('-------')
   if (type === 'Message4Bot') {
     await onBotGetPost(event)
-  } else if (type === 'GroupJoined') {
-    const botId = event.message.ownerId
-    const bot = await Bot.findByPk(botId)
-    const groupId = event.message.body.id
+  } else if (type === 'BotJoinGroup') {
+    let { bot, groupId } = event
     await onBotJoinGroup({
       bot,
       group: {

@@ -42,11 +42,12 @@ exports.onBotJoinGroup = async ({
 try {
   let local = require(
     resolve(
-      process.cwd(),
-      'bot-logic.js'
+      __dirname,
+      'bot.js'
     )
   )
   Object.assign(exports, local)
+  console.log('load bot.js')
 } catch(e) {
   console.log(e.message)
   console.log('no bot-logic.js, use default bot logic')
