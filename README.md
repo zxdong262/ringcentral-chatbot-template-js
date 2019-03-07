@@ -65,8 +65,8 @@ aws_secret_access_key = <your aws_secret_access_key>
 For more information, refer to [https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)
 
 ```bash
-cp lambda/serverless.sample.yml lambda/serverless.yml
-cp lambda/.env.sample.yml lambda/.env.yml
+cp dist/serverless.sample.yml dist/serverless.yml
+cp dist/.env.sample.yml dist/.env.yml
 ```
 
 Edit `dist/serverless.yml` and `dist/.env.yml`, and make sure you set the proper name and required env.
@@ -78,13 +78,6 @@ Deploy to AWS Lambda with `yarn build && yarn deploy`
 yarn build
 
 # Run this cmd to deploy to AWS Lambda, full build, may take more time
-yarn deploy
-
-# Then will get api gateway url
-# endpoints:
-# ANY - https://xxxxx.execute-api.us-east-1.amazonaws.com/prod/{proxy+}
-# Edit dist/.env.yml, replace RINGCENTRAL_CHATBOT_SERVER with https://xxxxx.execute-api.us-east-1.amazonaws.com/prod
-# run deploy again
 yarn deploy
 
 ## watch Lambda server log
