@@ -9,6 +9,7 @@ Template to build RingCentral chatbot with [ringcentral-chatbot-js](https://gith
 - [Development & Quick start](#development--quick-start)
 - [Test bot](#test-bot)
 - [Building and Deploying to AWS Lambda](#building-and-deploying-to-aws-lambda)
+  - [AWS Lambda connects AWS RDS issue](#aws-lambda-connects-aws-rds-issue)
 - [License](#license)
 
 ## Prerequisites
@@ -69,6 +70,13 @@ cp dist/serverless.sample.yml dist/serverless.yml
 cp dist/.env.sample.yml dist/.env.yml
 ```
 
+### AWS Lambda connects AWS RDS issue
+
+- If you create an RDS manually and let it create a new security group for you.
+- By default, the security group only allows inbound traffic from your current laptop's public IP address
+AWS Lambda by default cannot access the newly created AWS RDS
+- We need to update security group to allow inbound traffic from 0.0.0.0/0
+
 Edit `dist/serverless.yml` and `dist/.env.yml`, and make sure you set the proper name and required env.
 
 Deploy to AWS Lambda with `yarn build && yarn deploy`
@@ -84,6 +92,7 @@ yarn deploy
 yarn watch
 
 ```
+
 
 Do not forget to set your RingCentral app's redirect URL to Lambda's API Gateway URL, `https://xxxx.execute-api.us-east-1.amazonaws.com/prod/bot/oauth` for bot app.
 
